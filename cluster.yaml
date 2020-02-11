@@ -1,0 +1,50 @@
+__default__:
+  partition: "bmm"
+  nodes: 1
+  cpus: "{threads}"
+  tasks: 1
+  name: "{rule}.{wildcards}"
+  output: "logs_slurm/{rule}.{wildcards}.out"
+  time: "{params.time}"
+  email: "scpeng@ucdavis.edu"
+  email_type: "FAIL"
+  mem: "2g"
+
+fastqc:
+  mem: "500M"
+
+trim:
+  mem: 8g
+
+mapping:
+  mem: 20g
+
+convert_sam:
+  mem: 4g
+
+sort_bam:
+  mem: 8g
+
+markdup:
+  mem: 20g
+
+bam_stat:
+  mem: 6g
+
+EstFragSize:
+  mem: 4g
+
+bamCoverage_unfiltered:
+  mem: 8g
+
+makebedGraph:
+  mem: 8g
+
+multiBigWig_unfiltered:
+  mem: 20g
+
+getMitoReads:
+  mem: 10g
+
+chrMStats:
+  mem: 6g

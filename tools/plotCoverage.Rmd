@@ -1,0 +1,39 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Load libraries
+```{r}
+library("dplyr")
+library(readr)
+library(karyoploteR)
+library("ggplot2")
+```
+
+
+
+Read cov data
+```{r}
+cov_data = read_tsv("../Results/deeptools/Liver_GunevaStar_Nuclei.bg", col_names = c("Chr","Start","End","RPKM"))
+```
+
+```{r}
+#genome = read_tsv("~/reference/equcab3/UCSC/equCab3.chrom.sizes", col_names = c("chr", "end")) %>% filter(startsWith(chr, "chr")) %>% mutate(start = 1) %>% select(chr,start,end) 
+custom_genome = toGRanges("chr1", 1, 188260577)
+```
+
+```{r}
+cov_data_chr1 = filter(cov_data, Chr == 'chr1')
+```
+
+```{r}
+kp = plotKaryotype(genome = custom_genome, zoom = toGRanges('chr1', 1, 100000))
+kpBars(kp, chr = 'chr1', x0 = cov_data_chr1$Start, x1 = cov_data_chr1$End, y1 = cov_data_chr1$RPKM)
+kpAxis(kp, ymax = max(cov_data_chr1$RPKM))
+```
+
+```{r}
+
+```
+

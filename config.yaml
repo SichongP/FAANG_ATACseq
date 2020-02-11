@@ -1,0 +1,7 @@
+genome_size: 2506966135
+effective_size: 2497530654
+reps: [ChattyPatty, GunevaStar, GunevaStarOld]
+tissues: [Liver]
+assays: [Nuclei, Tissue]
+reads: [R1, R2]
+ref: /home/pengsc/reference/equcab3/UCSC/equCab3.fa.gz
