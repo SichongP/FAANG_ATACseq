@@ -33,7 +33,8 @@ rule all:
         "Results/QC/trimmed/multiqc_report.html",
 #        expand("Results/figures/PEFragSize_{tissue}_{assay}.png", tissue = TISSUES, assay = ASSAYS),
 #        "Results/figures/pearson_heatmap.png",
-        expand("Results/deeptools/{tissue}_{rep}_{assay}.nonorm.bg", tissue = TISSUES, assay = ASSAYS, rep = REPS)
+        expand("Results/deeptools/{tissue}_{rep}_{assay}.nonorm.bg", tissue = TISSUES, assay = ASSAYS, rep = REPS),
+        "Results/figures/Fingerprint.png"
 
 rule raw_qc:
     input: "raw_reads/{tissue}_{rep}_{assay}_{read}.fq.gz"
@@ -231,5 +232,20 @@ rule chrMStats:
     shell:
      """
      samtools flagstat -@ {threads} {input} > {output}
+     """
+
+rule plotFingerprint_all:
+    input:
+        bam = expand("Results/mapping/{tissue}_{rep}_{assay}.markdup.sorted.bam", rep = REPS, tissue = TISSUES, assay = ASSAYS),
+        bai = expand("Results/mapping/{tissue}_{rep}_{assay}.markdup.sorted.bam.bai", rep = REPS, tissue = TISSUES, assay = ASSAYS)
+    output:
+        plot = "Results/figures/Fingerprint.png", metrics = "Results/metrics/Fingerprint.txt"
+    conda: "env/deeptools.yaml"
+    params: time = "360"
+    threads: 8
+    log: "Results/logs/deeptools/fingerprint.log"
+    shell:
+     """
+     plotFingerprint --bamfiles {input.bam} -o {output.plot} -p {threads} --skipZeros -T "Fingerprint plot" --smartLabels --outQualityMetrics {output.metrics}
      """
 

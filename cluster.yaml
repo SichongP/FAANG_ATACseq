@@ -48,3 +48,7 @@ getMitoReads:
 
 chrMStats:
   mem: 6g
+
+plotFingerprint_all:
+  mem: 20g
+  partition: 'bmh'
