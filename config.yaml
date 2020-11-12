@@ -1,7 +1,7 @@
 genome_size: 2506966135
 effective_size: 2497530654
-reps: [ChattyPatty, GunevaStar]
+reps: [CP, GS]
 tissues: [Liver, Lamina]
-assays: [Nuclei, Tissue]
+assays: [Nuclei, Tissue, NucleiAM, TissueAM]
 reads: [R1, R2]
 ref: /home/pengsc/reference/equcab3/UCSC/equCab3.fa.gz

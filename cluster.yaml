@@ -1,5 +1,5 @@
 __default__:
-  partition: "bmm"
+  partition: "low2"
   nodes: 1
   cpus: "{threads}"
   tasks: 1
@@ -10,19 +10,43 @@ __default__:
   email_type: "FAIL"
   mem: "2g"
 
+subSample:
+  mem: "10g"
+  partition: "med2"
+
+plotEnrichment:
+  mem: "10g"
+  partition: "med2"
+
+plotEnrichment_macs2:
+  mem: "10g"
+  partition: "med2"
+
+macs2:
+  mem: "10g"
+  partition: "bml"
+
 fastqc:
   mem: "500M"
 
+hmmratac:
+  mem: "80g"
+  partition: "bmm"
+
 trim:
-  mem: 8g
+  mem: 3g
 
 mapping:
   mem: 20g
+  partition: "bmm"
 
 convert_sam:
   mem: 4g
 
 sort_bam:
+  mem: 8g
+
+sortShiftedReads:
   mem: 8g
 
 markdup:
@@ -31,16 +55,19 @@ markdup:
 bam_stat:
   mem: 6g
 
+filtered_stat:
+  mem: 6g
+
 EstFragSize:
   mem: 4g
 
-bamCoverage_unfiltered:
+bamCoverage:
   mem: 8g
 
 makebedGraph:
   mem: 8g
 
-multiBigWig_unfiltered:
+multiBigWig:
   mem: 20g
 
 getMitoReads:
@@ -51,4 +78,10 @@ chrMStats:
 
 plotFingerprint_all:
   mem: 20g
-  partition: 'bmh'
+  partition: "bmm"
+
+filterBam:
+  mem: 10g
+
+shiftReads:
+  mem: 8g
